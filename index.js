@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const login = require('./routers/login');
 
 const app = express();
+
+app.use(express.json());
+
 dotenv.config();
 const { DB } = process.env;
 const { PORT } = process.env;
@@ -17,7 +20,7 @@ app.listen(PORT || 5000, () => {
   console.log('Server listening ');
 });
 
-app.use('/api/login', login);
+app.use('/api', login);
 
 const connectDB = async () => {
   try {
